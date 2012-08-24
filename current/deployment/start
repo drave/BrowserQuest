@@ -11,8 +11,8 @@
 # Useful for debugging
 #set -x verbose
 
-if [ ! -f "server.js" ]; then
-  echo "I don't see server.js in the current directory."
+if [ ! -f "server/js/main.js" ]; then
+  echo "I don't see server/js/main.js in the current directory."
   exit 1
 fi
 
@@ -43,13 +43,13 @@ fi
 # Run the app via 'forever' so that it restarts automatically if it fails
 # Use `pwd` to make sure we have a full path, forever is otherwise easily confused 
 # and will stop every server with the same filename
-forever -o data/console.log -e data/error.log start `pwd`/server.js && echo "Site started at $HOST port $PORT"
+forever -o data/console.log -e data/error.log start `pwd`/server/js/main.js && echo "Site started at $HOST port $PORT"
 
 # Run the app without 'forever'. Record the process id so 'stop' can kill it later.
 # We recommend installing 'forever' instead for node apps. For non-node apps this code
 # may be helpful
 #
-# node server.js >> data/console.log 2>&1 &
+# node server/js/main.js >> data/console.log 2>&1 &
 # PID=$!
 # echo $PID > data/pid
 #	
